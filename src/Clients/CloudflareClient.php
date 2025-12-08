@@ -2,12 +2,12 @@
 
 namespace PixoVoid\Cloudflared\Clients;
 
-use PixoVoid\Cloudflared\Data\Certificate;
-use PixoVoid\Cloudflared\Exceptions\NotATunnelDnsRecordException;
 use Cloudflare\API\Adapter\Guzzle;
 use Cloudflare\API\Auth\APIToken;
 use Cloudflare\API\Endpoints\DNS;
 use Cloudflare\API\Endpoints\Zones;
+use PixoVoid\Cloudflared\Data\Certificate;
+use PixoVoid\Cloudflared\Exceptions\NotATunnelDnsRecordException;
 
 class CloudflareClient
 {

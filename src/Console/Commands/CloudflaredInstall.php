@@ -2,6 +2,8 @@
 
 namespace PixoVoid\Cloudflared\Console\Commands;
 
+use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
 use PixoVoid\Cloudflared\Concerns\InteractsWithCloudflareApi;
 use PixoVoid\Cloudflared\Concerns\InteractsWithHerd;
 use PixoVoid\Cloudflared\Concerns\InteractsWithTunnel;
@@ -10,8 +12,6 @@ use PixoVoid\Cloudflared\Data\ProjectConfig;
 use PixoVoid\Cloudflared\Data\TunnelConfig;
 use PixoVoid\Cloudflared\Exceptions\DnsRecordAlreadyExistsException;
 use PixoVoid\Cloudflared\Facades\Cloudflared;
-use Illuminate\Console\Command;
-use Illuminate\Support\Arr;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;

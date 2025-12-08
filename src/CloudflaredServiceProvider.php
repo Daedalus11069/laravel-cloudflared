@@ -2,13 +2,13 @@
 
 namespace PixoVoid\Cloudflared;
 
+use Illuminate\Support\ServiceProvider;
 use PixoVoid\Cloudflared\Clients\CloudflareClient;
 use PixoVoid\Cloudflared\Console\Commands\CloudflaredInstall;
 use PixoVoid\Cloudflared\Console\Commands\CloudflaredRun;
 use PixoVoid\Cloudflared\Console\Commands\CloudflaredUninstall;
 use PixoVoid\Cloudflared\Data\Certificate;
 use PixoVoid\Cloudflared\Facades\Cloudflared;
-use Illuminate\Support\ServiceProvider;
 
 class CloudflaredServiceProvider extends ServiceProvider
 {
