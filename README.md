@@ -10,6 +10,10 @@ A Laravel package for creating and managing Cloudflare Tunnels to provide secure
 - Secure tunneling with Cloudflare's global network
 - Seamless integration with Vite development server via companion package
 
+## Disclaimer and Limitation of Liability
+
+This software is provided "as is", without warranty of any kind, express or implied. The maintainers and contributors shall not be liable for any damages or losses, including but not limited to direct, indirect, incidental, special, exemplary, or consequential damages, arising from the use of this package. Users are solely responsible for ensuring the security, reliability, and compliance of their development and production environments. Use at your own risk.
+
 ## Prerequisites
 
 Before using this package, ensure you have:
