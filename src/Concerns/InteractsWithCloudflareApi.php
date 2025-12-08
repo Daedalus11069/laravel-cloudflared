@@ -2,10 +2,10 @@
 
 namespace PixoVoid\Cloudflared\Concerns;
 
+use Illuminate\Support\Facades\Cache;
 use PixoVoid\Cloudflared\Clients\CloudflareClient;
 use PixoVoid\Cloudflared\Data\TunnelConfig;
 use PixoVoid\Cloudflared\Exceptions\NotATunnelDnsRecordException;
-use Illuminate\Support\Facades\Cache;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\spin;

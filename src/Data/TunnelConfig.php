@@ -2,8 +2,8 @@
 
 namespace PixoVoid\Cloudflared\Data;
 
-use PixoVoid\Cloudflared\Concerns\AssemblesPath;
 use Illuminate\Support\Facades\File;
+use PixoVoid\Cloudflared\Concerns\AssemblesPath;
 
 class TunnelConfig
 {

@@ -2,12 +2,12 @@
 
 namespace PixoVoid\Cloudflared\Console\Commands;
 
+use Illuminate\Console\Command;
 use PixoVoid\Cloudflared\Concerns\InteractsWithCloudflareApi;
 use PixoVoid\Cloudflared\Concerns\InteractsWithHerd;
 use PixoVoid\Cloudflared\Concerns\InteractsWithTunnel;
 use PixoVoid\Cloudflared\Concerns\ManagesProject;
 use PixoVoid\Cloudflared\Facades\Cloudflared;
-use Illuminate\Console\Command;
 
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;

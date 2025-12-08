@@ -10,7 +10,7 @@ class Platform
 
         if ($home === false || $home === null || $home === '') {
             // Fallback to HOMEDRIVE + HOMEPATH (Windows)
-            $home = rtrim((string) (getenv('HOMEDRIVE') . getenv('HOMEPATH')), "\\/") ?: 'C:/';
+            $home = rtrim((string) (getenv('HOMEDRIVE').getenv('HOMEPATH')), '\\/') ?: 'C:/';
         }
 
         return str_replace('\\', '/', $home);

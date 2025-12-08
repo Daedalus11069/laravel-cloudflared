@@ -2,10 +2,10 @@
 
 namespace PixoVoid\Cloudflared\Concerns;
 
-use PixoVoid\Cloudflared\Data\TunnelDetails;
-use PixoVoid\Cloudflared\Exceptions\DnsRecordAlreadyExistsException;
 use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
+use PixoVoid\Cloudflared\Data\TunnelDetails;
+use PixoVoid\Cloudflared\Exceptions\DnsRecordAlreadyExistsException;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\spin;

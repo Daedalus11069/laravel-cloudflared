@@ -2,14 +2,14 @@
 
 namespace PixoVoid\Cloudflared\Console\Commands;
 
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Process;
 use PixoVoid\Cloudflared\Concerns\InteractsWithHerd;
 use PixoVoid\Cloudflared\Concerns\InteractsWithTunnel;
 use PixoVoid\Cloudflared\Concerns\ManagesProject;
-use PixoVoid\Cloudflared\Support\Platform;
 use PixoVoid\Cloudflared\Data\TunnelConfig;
 use PixoVoid\Cloudflared\Facades\Cloudflared;
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Process;
+use PixoVoid\Cloudflared\Support\Platform;
 
 use function Laravel\Prompts\info;
 
