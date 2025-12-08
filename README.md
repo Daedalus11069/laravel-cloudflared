@@ -137,7 +137,7 @@ For a detailed summary of changes made in this fork, please refer to the `NOTICE
 
 ## Support
 
-For issues, feature requests, or questions, please use the [GitHub Issues](https://github.com/PixoVoid-net/laravel-cloudflared/issues) page of this repository.
+For issues, feature requests, or questions, please use the [GitHub Issues](https://github.com/PixoVoid/laravel-cloudflared/issues) page of this repository.
 
 ## Related Packages
 

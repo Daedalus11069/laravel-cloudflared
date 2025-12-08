@@ -3,10 +3,10 @@
     "type": "library",
     "description": "A Laravel package to create and manage Cloudflare Tunnels for local development (fork by PixoVoid)",
     "keywords": ["cloudflare", "cloudflared", "laravel", "tunnel", "herd"],
-    "homepage": "https://github.com/PixoVoid-net/laravel-cloudflared",
+    "homepage": "https://github.com/PixoVoid/laravel-cloudflared",
     "support": {
-        "source": "https://github.com/PixoVoid-net/laravel-cloudflared",
-        "issues": "https://github.com/PixoVoid-net/laravel-cloudflared/issues"
+        "source": "https://github.com/PixoVoid/laravel-cloudflared",
+        "issues": "https://github.com/PixoVoid/laravel-cloudflared/issues"
     },
     "license": "MIT",
     "authors": [
