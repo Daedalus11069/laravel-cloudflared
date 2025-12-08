@@ -1,98 +1,86 @@
-# Cloudflared for Laravel
+# Laravel Cloudflared
 
-A simple package to create and manage Cloudflare Tunnels for your Laravel projects. Cloudflare Tunnels give you instant public access to your local development environment, similar to Expose or ngrok, but powered by Cloudflare. Perfect for testing webhooks and sharing work-in-progress.
+A Laravel package for creating and managing Cloudflare Tunnels to provide secure public access to local development environments. This solution offers an alternative to services like ngrok or Expose, leveraging Cloudflare's infrastructure for tunneling requests directly to your local Laravel application.
 
-Pair it with [Cloudflared for Vite](https://github.com/aerni/vite-plugin-laravel-cloudflared) to get seamless tunneled access to both your Laravel app and Vite's dev server, making it effortless to debug your frontend on real devices like your iPhone.
+## Key Features
+
+- Create and manage Cloudflare Tunnels directly from Laravel Artisan commands
+- Automatic DNS record configuration for custom subdomains
+- Integration with Laravel Herd for local development environments
+- Secure tunneling with Cloudflare's global network
+- Seamless integration with Vite development server via companion package
 
 ## Prerequisites
 
-1. Install [cloudflared](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads)
-2. Run `cloudflared tunnel login` to authenticate the desired domain
-3. Install [Laravel Herd](https://herd.laravel.com)
+Before using this package, ensure you have:
+
+1. **Cloudflared CLI**: Install from [Cloudflare's downloads page](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads)
+2. **Cloudflare Authentication**: Run `cloudflared tunnel login` to authenticate with your Cloudflare account and domain
+3. **Laravel Herd**: Install [Laravel Herd](https://herd.laravel.com) for optimal local development experience
 
 ## Installation
 
-Install the package using Composer (fork package):
+Install the package via Composer:
 
 ```bash
 composer require pixovoid/laravel-cloudflared
 ```
 
-## Basic Usage
+## Usage
 
-### Creating a tunnel
+### Creating a Tunnel
 
-Create a tunnel for your project with a single command. This will create a Cloudflare tunnel, configure DNS records, set up a Herd link, and save the configuration to `.cloudflared.yaml` in your project root.
+Create a Cloudflare tunnel for your project with a single command. This command will:
+- Create a new Cloudflare tunnel
+- Configure DNS records for your specified subdomain
+- Set up a Herd link for local access
+- Save configuration to `.cloudflared.yaml` in your project root
 
 ```bash
 php artisan cloudflared:install
 ```
 
-> **Note:** Run this command again to modify the existing installation. Change the subdomain, create or repair DNS records, or delete and recreate the tunnel.
+**Note**: Running this command again will modify the existing installation. You can change the subdomain, repair DNS records, or recreate the tunnel as needed.
 
-### Running the tunnel
+### Running the Tunnel
 
-Start the tunnel to make your local site publicly accessible.
+Start the tunnel to make your local development environment publicly accessible:
 
 ```bash
 php artisan cloudflared:run
 ```
 
-### Deleting the tunnel
+### Removing a Tunnel
 
-Remove the tunnel, DNS records, and configuration when you no longer need it.
+Clean up all resources when the tunnel is no longer needed:
 
 ```bash
 php artisan cloudflared:uninstall
 ```
 
-## License
+## Development Setup
 
-This package is open-sourced software licensed under the [MIT license](LICENSE.md).
+### Local Development with Path Repository
 
-## Credits
+For developing or modifying the package, you can use Composer's path repository:
 
-Developed by [Michael Aerni](https://michaelaerni.ch)
-
-Fork maintained by [PixoVoid](https://PixoVoid.dev) (PixoVoid.dev, PixoVoid.net)
-
-## Support
-
-For issues and questions, please use the [GitHub Issues](https://github.com/PixoVoid-net/laravel-cloudflared/issues) page.
-
-## Attribution & Notice
-
-This repository is a fork of the original project `aerni/laravel-cloudflared` (https://github.com/aerni/laravel-cloudflared). The original author is Michael Aerni and his work is licensed under MIT. This fork is maintained by PixoVoid and includes additional platform compatibility fixes and maintenance.
-
-See `NOTICE.md` for a short summary of the fork changes and attribution.
-
-### License & Copyright
-
-The original license (MIT) is retained. See the `LICENSE` file for full license text. The original copyright belongs to Michael Aerni; PixoVoid is listed as the fork maintainer.
-
-### Installation (Composer)
-
-Recommended (Packagist):
-
-```bash
-composer require pixovoid/laravel-cloudflared
-```
-
-Developing locally (use `path` repository in your app to work on the package inline):
-
-1. In your Laravel app's `composer.json` add:
+1. Add the path repository to your Laravel application's `composer.json`:
 
 ```json
-"repositories": [
-	{
-		"type": "path",
-		"url": "../path/to/laravel-cloudflared",
-		"options": {"symlink": true}
-	}
-]
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../path/to/laravel-cloudflared",
+            "options": {
+                "symlink": true
+            }
+        }
+    ]
+}
 ```
 
-2. From your Laravel app folder run:
+2. Require the package from the local path:
 
 ```bash
 composer require pixovoid/laravel-cloudflared:dev-main
@@ -100,41 +88,57 @@ composer require pixovoid/laravel-cloudflared:dev-main
 
 ### Testing
 
-This package includes PHPUnit tests and uses `orchestra/testbench` for Laravel integration tests.
+The package includes PHPUnit tests and uses `orchestra/testbench` for Laravel integration testing.
 
-Run tests locally after installing dev dependencies:
+Run the test suite after installing development dependencies:
 
 ```bash
 composer install --dev
 composer test
 ```
 
-### Windows notes
+## Platform Compatibility
 
-This fork implements best-effort Windows compatibility:
+### Windows Support
 
-- Avoids using TTY on Windows and checks `Process::isTtySupported()`.
-- Uses a normalized `Platform::homeDirectory()` to support `HOME`, `USERPROFILE` and `HOMEDRIVE`+`HOMEPATH`.
-- When `pcntl` is not available (common on Windows), a shutdown fallback is used to attempt cleanup of the `cloudflared` process and tunnel config.
+This fork implements best-effort Windows compatibility with the following considerations:
 
-If you plan to run `php artisan cloudflared:run` on Windows, ensure `cloudflared` and `herd` are installed and available in `%PATH%`.
+- Automatic detection and fallback for TTY unsupported environments
+- Normalized home directory detection supporting `HOME`, `USERPROFILE`, and `HOMEDRIVE`/`HOMEPATH` environment variables
+- Graceful fallback for process signal handling when `pcntl` extension is unavailable
+- Process cleanup mechanisms for Windows environments
 
-## Fork notes (PixoVoid)
+For Windows usage, ensure:
+- `cloudflared` CLI is installed and available in your system PATH
+- Laravel Herd is installed and configured
+- Required environment variables are properly set
 
-This repository is a fork of the original `aerni/laravel-cloudflared` with additional Windows compatibility fixes and maintenance by PixoVoid. Key fork points:
+## Attribution and Licensing
 
-- Windows path and TTY fallbacks for `cloudflared:run`.
-- `Platform::homeDirectory()` to normalize HOME/USERPROFILE/HOMEDRIVE handling.
-- Composer package republished under `pixovoid/laravel-cloudflared`.
+This repository is a fork of the original project `aerni/laravel-cloudflared` (https://github.com/aerni/laravel-cloudflared).
 
-If you rely on the original package name (`aerni/cloudflared`), note that this fork uses a different package name and must be required explicitly.
+### Original Project
+- **Author**: Michael Aerni
+- **License**: MIT
+- **Repository**: https://github.com/aerni/laravel-cloudflared
 
-### Windows notes
+### Fork Maintainer
+- **Maintainer**: PixoVoid (PixoVoid.dev, PixoVoid.net)
+- **Package Name**: `pixovoid/laravel-cloudflared`
+- **Key Changes**: Windows compatibility improvements, maintenance updates, and platform-specific fixes
 
-This fork adds best-effort compatibility for Windows 11. Notes:
+### License Information
 
-- `pcntl` and Unix signals are not available on Windows; the package uses a shutdown fallback for cleanup when `pcntl` is not present.
-- TTY is not supported on Windows; the package avoids calling `->tty()` on Windows.
-- `cloudflared` and `herd` must be installed and in your `%PATH%` for CLI commands that call those binaries.
+This software is licensed under the MIT License. See the `LICENSE` file for the full license text.
 
-For full Windows testing, run the commands on a Windows 11 machine with `cloudflared` and `herd` installed, or mock the external calls in tests.
+Copyright for the original work belongs to Michael Aerni. PixoVoid is listed as the fork maintainer.
+
+For a detailed summary of changes made in this fork, please refer to the `NOTICE.md` file.
+
+## Support
+
+For issues, feature requests, or questions, please use the [GitHub Issues](https://github.com/PixoVoid-net/laravel-cloudflared/issues) page of this repository.
+
+## Related Packages
+
+For seamless integration with Vite development server, consider using [Cloudflared for Vite](https://github.com/aerni/vite-plugin-laravel-cloudflared), which provides tunneled access to both your Laravel application and Vite's hot module replacement server, facilitating frontend debugging on real devices.
