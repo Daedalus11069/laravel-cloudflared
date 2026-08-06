@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         php: [8.4, 8.5]
+        laravel: [12, 13]
     steps:
       - uses: actions/checkout@v4
 
@@ -25,12 +26,17 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.composer/cache
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          key: ${{ runner.os }}-composer-${{ matrix.laravel }}-${{ hashFiles('**/composer.json') }}
           restore-keys: |
-            ${{ runner.os }}-composer-
+            ${{ runner.os }}-composer-${{ matrix.laravel }}-
+
+      - name: Select Laravel version
+        run: |
+          composer require "illuminate/support:^${{ matrix.laravel }}.0" --no-update
+          composer require "orchestra/testbench:^${{ matrix.laravel == '13' && '11.0' || '10.8' }}" --no-update --dev
 
       - name: Install dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist
+        run: composer update --no-progress --no-suggest --prefer-dist --prefer-stable
 
       - name: Validate composer.json
         run: composer validate --strict
